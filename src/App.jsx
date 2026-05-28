@@ -1,3 +1,5 @@
+import './api/tmdb'
+
 function App() {
   return (
     <>
