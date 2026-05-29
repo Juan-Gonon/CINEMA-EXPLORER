@@ -1,0 +1,14 @@
+import { tmdbClient } from '../api/tmdb'
+
+export const getTrendingMovies = async () => {
+  try {
+    const response = await tmdbClient.get('/trending/movie/day')
+
+    if (!response.data) throw new Error('Error fetching movies')
+
+    return response.data
+  } catch (error) {
+    console.error('Error fetching trending movies: ', error)
+    throw error
+  }
+}
