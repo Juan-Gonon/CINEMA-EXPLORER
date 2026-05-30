@@ -8,6 +8,8 @@ export const AppRouter = () => {
       <Routes>
         <Route path='/' element={<MainLayout />}>
           <Route index element={<HomePage />} />
+          <Route path='/movies' element={<HomePage />} />
+          <Route path='/favorites' element={<HomePage />} />
         </Route>
       </Routes>
     </BrowserRouter>
