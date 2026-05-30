@@ -33,13 +33,3 @@ tmdbClient.interceptors.request.use(
     return Promise.reject(error)
   }
 )
-
-export const getTrendingMovies = async () => {
-  try {
-    const response = await tmdbClient.get('/trending/movie/day')
-    return response.data
-  } catch (error) {
-    console.error('Error fetching trending movies: ', error)
-    throw error
-  }
-}

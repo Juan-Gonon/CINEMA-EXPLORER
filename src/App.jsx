@@ -1,5 +1,6 @@
 import './api/tmdb'
 import { useGetTrendingMovies } from './hooks/useGetTrendingMovies'
+import { AppRouter } from './router/AppRouter'
 
 function App() {
   const { moviesDay } = useGetTrendingMovies()
@@ -7,7 +8,7 @@ function App() {
   console.log(moviesDay)
   return (
     <>
-      <h1 className='text-3xl font-bold underline'>Hola</h1>
+      <AppRouter />
     </>
   )
 }
