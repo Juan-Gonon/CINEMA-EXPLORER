@@ -1,7 +1,14 @@
+import { useGetTrendingMovies } from '../hooks/useGetTrendingMovies'
+
 export const HomePage = () => {
+  const { moviesDay, error, loading } = useGetTrendingMovies()
+
+  console.log(moviesDay)
+
   return (
     <div className='relative w-full min-h-[80vh] flex flex-col justify-center px-6 md:px-12 py-12'>
       {/* Contenedor del Texto (Como en tu segunda imagen) */}
+
       <div className='max-w-2xl z-10 space-y-4'>
         {/* Badge "Trending Now" */}
         <span className='inline-block bg-primary text-white text-xs font-bold px-3 py-1 rounded uppercase tracking-wider'>
