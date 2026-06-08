@@ -16,7 +16,7 @@ export const HeroCarousel = ({ movies }) => {
         modules={[Autoplay, EffectCoverflow]}
         effect={'coverflow'}
         autoplay={{
-          delay: 1000,
+          delay: 10000,
           disableOnInteraction: false,
         }}
         loop={true}

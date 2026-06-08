@@ -46,16 +46,6 @@ export const HomePage = () => {
         </div>
       </div>
 
-      {/* CONTENEDOR DE LA IMAGEN DE FONDO */}
-      {/* <div className='absolute inset-0 w-full h-full z-0 mask-b-from-20% mask-b-to-80%'>
-        <img
-          className='w-full h-full object-cover opacity-60'
-          src={`https://image.tmdb.org/t/p/original/${mainMovie?.poster_path}`}
-          alt={mainMovie?.title}
-        />
-
-        <div className='absolute inset-0 bg-linear-to-t from-[#16161A] via-[#16161A]/40 to-transparent' />
-      </div> */}
       <HeroCarousel key={moviesDay.id} movies={moviesDay} />
     </div>
   )
