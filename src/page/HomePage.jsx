@@ -1,3 +1,4 @@
+import { HeroCarousel } from '../components/movies/HeroCarousel'
 import { useGetTrendingMovies } from '../hooks/useGetTrendingMovies'
 
 export const HomePage = () => {
@@ -19,7 +20,7 @@ export const HomePage = () => {
   const mainMovie = moviesDay?.[1]
 
   return (
-    <div className='relative w-full min-h-[85vh] md:min-h-[80vh] flex flex-col justify-end px-6 md:px-12 pb-16 overflow-hidden'>
+    <div className='relative w-full min-h-[85vh] rounded-2xl md:min-h-[80vh] flex flex-col justify-end px-6 md:px-12 pb-16 overflow-hidden'>
       {/* CONTENEDOR DEL TEXTO (ENCIMA) */}
       <div className='relative max-w-2xl z-10 space-y-4'>
         <span className='inline-block bg-primary text-white text-xs font-bold px-3 py-1 rounded uppercase tracking-wider'>
@@ -46,7 +47,7 @@ export const HomePage = () => {
       </div>
 
       {/* CONTENEDOR DE LA IMAGEN DE FONDO */}
-      <div className='absolute inset-0 w-full h-full z-0 mask-b-from-20% mask-b-to-80%'>
+      {/* <div className='absolute inset-0 w-full h-full z-0 mask-b-from-20% mask-b-to-80%'>
         <img
           className='w-full h-full object-cover opacity-60'
           src={`https://image.tmdb.org/t/p/original/${mainMovie?.poster_path}`}
@@ -54,7 +55,8 @@ export const HomePage = () => {
         />
 
         <div className='absolute inset-0 bg-linear-to-t from-[#16161A] via-[#16161A]/40 to-transparent' />
-      </div>
+      </div> */}
+      <HeroCarousel key={moviesDay.id} movies={moviesDay} />
     </div>
   )
 }
