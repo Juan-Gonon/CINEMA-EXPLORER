@@ -11,7 +11,7 @@ export const HeroCarousel = ({ movies }) => {
   if (heroMovies.length === 0) return null
 
   return (
-    <div className='absolute inset-0 w-full h-full z-0 mask-b-from-20% mask-b-to-80%'>
+    <div className='absolute inset-0 w-full h-full z-0 mask-b-from-85% mask-b-to-95%'>
       <Swiper
         modules={[Autoplay, EffectCoverflow]}
         effect={'coverflow'}
@@ -26,6 +26,29 @@ export const HeroCarousel = ({ movies }) => {
 
           return (
             <SwiperSlide key={movie.id} className='w-full h-full relative'>
+              <div className='absolute max-w-2xl bottom-30 left-6 md:bottom-60 md:left-20 z-100 space-y-4'>
+                <span className='inline-block bg-primary text-white text-xs font-bold px-3 py-1 rounded uppercase tracking-wider'>
+                  Trending Now
+                </span>
+
+                <h1 className='font-headline font-black text-4xl md:text-6xl tracking-tight text-white uppercase'>
+                  {movie?.title || 'The Neon Edge'}
+                </h1>
+
+                <p className='text-text-muted text-base md:text-lg leading-relaxed line-clamp-3'>
+                  {movie?.overview ||
+                    'In a world where memories are traded like currency...'}
+                </p>
+
+                <div className='flex flex-wrap gap-4 pt-4'>
+                  <button className='bg-primary hover:bg-red-700 text-white font-medium px-6 py-3 rounded-lg flex items-center gap-2 transition-all cursor-pointer'>
+                    ▶ Watch Trailer
+                  </button>
+                  <button className='border border-white/20 hover:border-white/40 bg-[#16161A]/50 text-white font-medium px-6 py-3 rounded-lg transition-all cursor-pointer'>
+                    ℹ️ More Details
+                  </button>
+                </div>
+              </div>
               <img
                 className='w-full h-full object-cover opacity-60'
                 src={backdropUrl}
