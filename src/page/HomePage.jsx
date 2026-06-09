@@ -23,10 +23,16 @@ export const HomePage = () => {
         <HeroCarousel key={moviesDay.id} movies={moviesDay} />
       </div>
       <div className='px-6 md:px-12 space-y-12 relative z-20'>
-        <section>
-          <h2 className='text-2xl font-bold mb-6 font-headline uppercase tracking-tight'>
-            Popular Movies
-          </h2>
+        <section className='bg-red-500 relative'>
+          <div className='bg-amber-300 flex justify-between items-center'>
+            <h2 className='text-2xl font-bold mb-6 font-headline uppercase tracking-tight'>
+              Popular Movies
+            </h2>
+            <div>
+              <span className=' text-primary'>View All</span>
+            </div>
+          </div>
+          <section></section>
         </section>
       </div>
     </div>
