@@ -12,3 +12,16 @@ export const getTrendingMovies = async () => {
     throw error
   }
 }
+
+export const getPopularMovies = async () => {
+  try {
+    const response = await tmdbClient.get('/movie/popular')
+
+    if (!response) throw new Error('Error fetching popular movies')
+
+    return response.data
+  } catch (error) {
+    console.error('Error fetching popularmoves', error)
+    throw error
+  }
+}
