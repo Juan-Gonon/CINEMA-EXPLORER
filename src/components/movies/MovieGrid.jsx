@@ -16,8 +16,13 @@ export const MovieGrid = () => {
       {/* <MovieCard movie={movie} /> */}
       <Swiper
         slidesPerView={3}
-        spaceBetween={130}
+        // spaceBetween={130}
         loop={true}
+        breakpoints={{
+          320: { slidesPerView: 2, spaceBetween: 12 },
+          640: { slidesPerView: 3, spaceBetween: 16 },
+          1024: { slidesPerView: 6, spaceBetween: 24 },
+        }}
         className='mySwiper w-full h-full rounded-xss '>
         {popular?.map((movie) => (
           <SwiperSlide className='w-full h-full relative '>
