@@ -1,4 +1,3 @@
-import { useGetPopularMovie } from '../../hooks/useGetPopularMovie'
 import { MovieCard } from './MovieCard'
 
 import { Swiper, SwiperSlide } from 'swiper/react'
@@ -6,9 +5,7 @@ import { Swiper, SwiperSlide } from 'swiper/react'
 import 'swiper/css'
 import 'swiper/css/pagination'
 
-export const MovieGrid = () => {
-  const { popular } = useGetPopularMovie()
-
+export const MovieGrid = ({ movies }) => {
   // const movie = popular[0]
   // console.log(movie)
   return (
@@ -24,8 +21,8 @@ export const MovieGrid = () => {
           1024: { slidesPerView: 6, spaceBetween: 24 },
         }}
         className='mySwiper w-full h-full rounded-xss '>
-        {popular?.map((movie) => (
-          <SwiperSlide className='w-full h-full relative '>
+        {movies?.map((movie) => (
+          <SwiperSlide lazy={true} className='w-full h-full relative '>
             <MovieCard movie={movie} key={movie.id} />
           </SwiperSlide>
         ))}

@@ -1,9 +1,15 @@
 import { HeroCarousel } from '../components/movies/HeroCarousel'
 import { MovieGrid } from '../components/movies/MovieGrid'
 import { useGetTrendingMovies } from '../hooks/useGetTrendingMovies'
+import { useGetPopularMovie } from '../hooks/useGetPopularMovie'
 
 export const HomePage = () => {
   const { moviesDay, error, loading } = useGetTrendingMovies()
+  const {
+    popular,
+    loading: loadingPopular,
+    error: errorPopular,
+  } = useGetPopularMovie()
 
   if (loading)
     return (
@@ -34,7 +40,10 @@ export const HomePage = () => {
             </div>
           </div>
           <section>
-            <MovieGrid />
+            {
+              /* <MovieGrid /> */
+              <MovieGrid movies={popular} />
+            }
           </section>
         </section>
       </div>
