@@ -24,8 +24,8 @@ export const HomePage = () => {
         <HeroCarousel key={moviesDay.id} movies={moviesDay} />
       </div>
       <div className='px-6 md:px-12 space-y-12 relative z-20'>
-        <section className='bg-red-500 relative'>
-          <div className='bg-amber-300 flex justify-between pt-1.5 items-center'>
+        <section className='flex flex-col gap-2 relative'>
+          <div className='flex justify-between pt-1.5 items-center'>
             <h2 className='text-base font-boldfont-headline uppercase tracking-tight'>
               Popular Movies
             </h2>
