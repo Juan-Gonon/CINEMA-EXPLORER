@@ -15,7 +15,7 @@ export const MovieGrid = () => {
     <div className='relative '>
       {/* <MovieCard movie={movie} /> */}
       <Swiper
-        slidesPerView={3}
+        // slidesPerView={3}
         // spaceBetween={130}
         loop={true}
         breakpoints={{
