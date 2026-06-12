@@ -36,37 +36,40 @@ export const HomePage = () => {
         <HeroCarousel key={nowPlaying.id} movies={nowPlaying} />
       </div>
       <div className='px-6 md:px-12 space-y-12 relative z-20 '>
-        <section className='flex flex-col gap-2 relative bg-[#16161A]/50 pt-2 pb-2 mask-y-from-90% mask-y-to-95%'>
-          <div className='flex justify-between pt-1.5 md:p-5 md:justify-around items-center '>
-            <h2 className='text-base font-boldfont-headline uppercase tracking-tight'>
-              Movies Day
-            </h2>
-            <div>
-              <span className=' text-primary'>View All</span>
-            </div>
-          </div>
-          <section className='pt-2 pb-4 pl-2'>
-            {
-              /* <MovieGrid /> */
-              <MovieGrid movies={moviesDay} />
-            }
-          </section>
-        </section>
+        {/* Sección 1: Movies Day */}
         <section className='flex flex-col gap-2 relative'>
-          <div className='flex justify-between pt-1.5 md:p-2 md:justify-around items-center'>
-            <h2 className='text-base font-boldfont-headline uppercase tracking-tight'>
-              Popular Movies
-            </h2>
-            <div>
-              <span className=' text-primary'>View All</span>
-            </div>
+          <h2>Movies Day</h2>
+          <div className='pt-2 pb-4 pl-2'>
+            {trendingLoading ? (
+              <div className='text-sm text-text-muted animate-pulse'>
+                Cargando tendencias...
+              </div>
+            ) : trendingError ? (
+              <div className='text-sm text-red-500'>
+                No se pudieron cargar las tendencias
+              </div>
+            ) : (
+              <MovieGrid movies={moviesDay} />
+            )}
           </div>
-          <section className=' pt-2 pb-4 pl-2'>
-            {
-              /* <MovieGrid /> */
+        </section>
+
+        {/* Sección 2: Popular Movies */}
+        <section className='flex flex-col gap-2 relative'>
+          <h2>Popular Movies</h2>
+          <div className='pt-2 pb-4 pl-2'>
+            {loadingPopular ? (
+              <div className='text-sm text-text-muted animate-pulse'>
+                Cargando populares...
+              </div>
+            ) : errorPopular ? (
+              <div className='text-sm text-red-500'>
+                No se pudieron cargar las populares
+              </div>
+            ) : (
               <MovieGrid movies={popular} />
-            }
-          </section>
+            )}
+          </div>
         </section>
       </div>
     </div>
