@@ -1,6 +1,8 @@
 export const MovieCard = ({ movie }) => {
   return (
-    <div className='relative h-55 w-35  md:h-75 md:w-40 overflow-hidden'>
+    <div
+      className='relative h-55 w-35  md:h-75 md:w-40 overflow-hidden hover:scale-110 transition
+                duration-300 ease-in-out'>
       <div className='relative h-[80%] w-full overflow-hidden rounded-xs'>
         <span className='absolute text-xs z-20 p-0.5 right-2.5 top-2 bg-[#2c2c2e] rounded-2xl'>
           ⭐ {movie?.vote_average?.toFixed(1)}
