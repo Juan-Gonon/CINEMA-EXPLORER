@@ -48,7 +48,7 @@ export const searchMovies = async (query) => {
       },
     })
 
-    if(res.status !== 200 ) thow new Error('Error search movie to server')
+    if (!res.ok) throw new Error('Error search movie to server')
 
     return res.data
   } catch (error) {
