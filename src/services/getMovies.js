@@ -42,15 +42,13 @@ export const getUpcomingMovies = async () => {
 export const searchMovies = async (query) => {
   if (!query || query.trim() === '') return []
   try {
-    const res = tmdbClient.get('/search/movie', {
+    const res = await tmdbClient.get('/search/movie', {
       params: {
-        query,
+        query: query.trim(),
       },
     })
 
-    if (!res.ok) throw new Error('Error search movie to server')
-
-    return res.data
+    return res.data.results || []
   } catch (error) {
     console.error('Error en searchMovies service:', error)
     throw error

@@ -15,7 +15,7 @@ export const MovieGrid = ({ movies }) => {
         // slidesPerView={3}
         // spaceBetween={130}
         loop={true}
-        lazy={true}
+        // lazy={true}
         breakpoints={{
           320: { slidesPerView: 2, spaceBetween: 12 },
           640: { slidesPerView: 3, spaceBetween: 16 },
