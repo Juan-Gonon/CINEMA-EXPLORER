@@ -10,7 +10,7 @@ export const Navbar = () => {
   const closeMenu = () => setIsOpen(false)
 
   const handleIsOpen = () => setIsOpen(!isOpen)
-  const { searchQuery, onchangeSearchQuery } = useSearchMovie()
+  const { searchParams, onchangeSearchQuery } = useSearchMovie()
 
   return (
     <header className='w-full bg-bg-dark/90 backdrop-blur-md border-b border-white/5 sticky top-0 z-50 px-4 md:px-12 py-3 md:py-0 md:h-20 flex flex-row items-center justify-between'>
@@ -33,7 +33,7 @@ export const Navbar = () => {
             type='text'
             placeholder='Search movies...'
             onChangeQuery={onchangeSearchQuery}
-            query={searchQuery}
+            query={searchParams.get('search') || ''}
           />
         </div>
       </div>
