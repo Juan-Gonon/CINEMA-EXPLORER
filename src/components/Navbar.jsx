@@ -3,14 +3,12 @@ import { Link, NavLink } from 'react-router-dom'
 import { NavLinkC } from './NavLinkC'
 import { HamburgerC } from './HamburgerC'
 import { InputSearch } from './InputSearch'
-import { useSearchMovie } from '../hooks/useSearchMovie'
 
-export const Navbar = () => {
+export const Navbar = ({ searchParams, onchangeSearchQuery }) => {
   const [isOpen, setIsOpen] = useState(false)
   const closeMenu = () => setIsOpen(false)
 
   const handleIsOpen = () => setIsOpen(!isOpen)
-  const { searchParams, onchangeSearchQuery } = useSearchMovie()
 
   return (
     <header className='w-full bg-bg-dark/90 backdrop-blur-md border-b border-white/5 sticky top-0 z-50 px-4 md:px-12 py-3 md:py-0 md:h-20 flex flex-row items-center justify-between'>
