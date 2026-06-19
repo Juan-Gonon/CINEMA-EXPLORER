@@ -9,10 +9,16 @@ export const useSearchMovie = () => {
   const debouncedQuery = useDebounce(searchParams.get('search') || '', 1000)
   const [searchMovie, setSearchMovie] = useState([])
   const [error, setError] = useState(null)
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(true)
 
   const onchangeSearchQuery = (e) => {
-    setSearchParams({ search: e.target.value })
+    const value = e.target.value
+
+    if (value.trim() === '') {
+      setSearchParams({})
+    } else {
+      setSearchParams({ search: value })
+    }
   }
 
   useEffect(() => {
@@ -29,7 +35,6 @@ export const useSearchMovie = () => {
         }
         const res = await searchMovies(debouncedQuery)
 
-        console.log(res)
         setSearchMovie(res)
       } catch (error) {
         setError(error)
