@@ -3,6 +3,7 @@ import { MainLayout } from '../layouts/MainLayout'
 import { HomePage } from '../page/HomePage'
 import { MoviesPage } from '../page/MoviesPage'
 import { FavoritePage } from '../page/FavoritePage'
+import { MovieDetailsPage } from '../page/MovieDetailsPage'
 
 export const AppRouter = () => {
   return (
@@ -13,6 +14,7 @@ export const AppRouter = () => {
           <Route path='/movies' element={<MoviesPage />} />
           <Route path='/favorites' element={<FavoritePage />} />
         </Route>
+        <Route path='/movie/:movieId' element={<MovieDetailsPage />} />
       </Routes>
     </BrowserRouter>
   )
