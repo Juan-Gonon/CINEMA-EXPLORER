@@ -13,8 +13,8 @@ export const AppRouter = () => {
           <Route index element={<HomePage />} />
           <Route path='/movies' element={<MoviesPage />} />
           <Route path='/favorites' element={<FavoritePage />} />
+          <Route path='/movie/:movieId' element={<MovieDetailsPage />} />
         </Route>
-        <Route path='/movie/:movieId' element={<MovieDetailsPage />} />
       </Routes>
     </BrowserRouter>
   )

@@ -5,7 +5,7 @@ import { getMoviesDetails } from '../services/getMovies'
 
 export const useMovieDetails = () => {
   const params = useParams()
-  const [movie, setMovie] = useState({})
+  const [movie, setMovie] = useState(null)
   const movieId = params.movieId || null
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState(null)
