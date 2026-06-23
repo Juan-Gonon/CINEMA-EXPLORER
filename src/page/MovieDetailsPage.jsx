@@ -3,7 +3,7 @@ import { MovieMetaGrid } from '../components/movies/MovieMetaGrid'
 import { useMovieDetails } from '../hooks/useMovieDetails'
 
 export const MovieDetailsPage = () => {
-  const { movie, loading, error } = useMovieDetails()
+  const { movie, loading, cast, trailerKey, error } = useMovieDetails()
 
   // 1. Estados de carga y error defensivos
   if (loading) {
