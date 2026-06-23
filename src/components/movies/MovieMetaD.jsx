@@ -1,3 +1,5 @@
+import { Button } from '../Button'
+
 export const MovieMetaD = ({ movie }) => {
   // Helper para formatear tiempo (128 -> 2h 8m)
   const formatRuntime = (minutes) => {
@@ -25,6 +27,8 @@ export const MovieMetaD = ({ movie }) => {
           </span>
         </>
       )}
+      <span>•</span>
+      <Button text={'▶ Watch Trailer'} />
     </div>
   )
 }

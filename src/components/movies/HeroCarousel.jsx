@@ -4,6 +4,7 @@ import { Autoplay, EffectCoverflow } from 'swiper/modules'
 // Importar los estilos necesarios de Swiper
 import 'swiper/css'
 import 'swiper/css/effect-fade'
+import { Button } from '../Button'
 
 export const HeroCarousel = ({ movies }) => {
   const heroMovies = movies?.slice(0, 10) || []
@@ -41,9 +42,7 @@ export const HeroCarousel = ({ movies }) => {
                 </p>
 
                 <div className='flex flex-wrap gap-4 pt-4'>
-                  <button className='bg-primary hover:bg-red-700 text-white font-medium px-6 py-3 rounded-lg flex items-center gap-2 transition-all cursor-pointer'>
-                    ▶ Watch Trailer
-                  </button>
+                  <Button text='Watch Trailer' />
                   <button className='border border-white/20 hover:border-white/40 bg-[#16161A]/50 text-white font-medium px-6 py-3 rounded-lg transition-all cursor-pointer'>
                     ℹ️ More Details
                   </button>
