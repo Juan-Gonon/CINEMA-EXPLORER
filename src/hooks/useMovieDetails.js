@@ -1,7 +1,11 @@
 import { useEffect } from 'react'
 import { useState } from 'react'
 import { useParams } from 'react-router-dom'
-import { getMoviesDetails } from '../services/getMovies'
+import {
+  getMovieCredits,
+  getMoviesDetails,
+  getMovieVideo,
+} from '../services/getMovies'
 
 export const useMovieDetails = () => {
   const params = useParams()
@@ -9,15 +13,35 @@ export const useMovieDetails = () => {
   const movieId = params.movieId || null
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState(null)
+  const [cast, setCast] = useState([])
+  const [trailerKey, setTrailerKey] = useState(null)
 
   useEffect(() => {
     ;(async () => {
       try {
         setLoading(true)
-        const res = await getMoviesDetails(movieId)
+
+        const [movieData, creditsData, videosData] = await Promise.all([
+          getMoviesDetails(movieId),
+          getMovieCredits(movieId),
+          getMovieVideo(movieId),
+        ])
         // console.log(res)
 
-        setMovie(res)
+        // console.log({
+        //   movieData,
+        //   creditsData,
+        //   videosData,
+        // })
+
+        setMovie(movieData)
+        setCast(creditsData)
+        const trailer = videosData.find(
+          (video) => video.type === 'Trailer' && video?.site === 'YouTube'
+        )
+        setTrailerKey(trailer ? trailer?.key : null)
+
+        //setMovie(res)
       } catch (error) {
         // console.error('Error custom hook', error)
         setError(error)
@@ -28,6 +52,8 @@ export const useMovieDetails = () => {
   }, [movieId])
   return {
     movie,
+    cast,
+    trailerKey,
     loading,
     error,
   }
