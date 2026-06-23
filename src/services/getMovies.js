@@ -75,3 +75,41 @@ export const getMoviesDetails = async (movieId) => {
     throw error
   }
 }
+
+export const getMovieCredits = async (movieId) => {
+  const id = Number(movieId)
+  if (!id || !Number.isInteger(id)) {
+    console.warn(`ID inválido proporcionado: ${id}`)
+    return null
+  }
+  try {
+    const res = await tmdbClient.get(`/movie/${id}/credits`)
+
+    // console.log(res.data?.cast)
+    return res.data?.cast || []
+  } catch (error) {
+    console.error(
+      'Error en Movie Credits:',
+      error.response?.data || error.message
+    )
+    throw error
+  }
+}
+
+export const getMovieVideo = async (movieId) => {
+  const id = Number(movieId)
+
+  if (!id || !Number.isInteger(id)) {
+    console.warn(`ID inválido proporcionado: ${id} `)
+    return null
+  }
+  try {
+    const res = await tmdbClient.get(`/movie/${id}/videos`)
+    // console.log(res)
+
+    return res.data.results || []
+  } catch (error) {
+    console.error('Error en Movie Video', error.response?.data || error.message)
+    throw error
+  }
+}
