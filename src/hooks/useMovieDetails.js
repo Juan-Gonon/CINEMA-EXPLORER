@@ -20,6 +20,9 @@ export const useMovieDetails = () => {
     ;(async () => {
       try {
         setLoading(true)
+        setMovie([])
+        setCast([])
+        setTrailerKey(null)
 
         const [movieData, creditsData, videosData] = await Promise.all([
           getMoviesDetails(movieId),
@@ -36,7 +39,7 @@ export const useMovieDetails = () => {
 
         setMovie(movieData)
         setCast(creditsData)
-        const trailer = videosData.find(
+        const trailer = (videosData || []).find(
           (video) => video.type === 'Trailer' && video?.site === 'YouTube'
         )
         setTrailerKey(trailer ? trailer?.key : null)
