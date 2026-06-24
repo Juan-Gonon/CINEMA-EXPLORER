@@ -1,11 +1,12 @@
+import { useState } from 'react'
 import { MovieMetaD } from '../components/movies/MovieMetaD'
 import { MovieMetaGrid } from '../components/movies/MovieMetaGrid'
 import { useMovieDetails } from '../hooks/useMovieDetails'
 
 export const MovieDetailsPage = () => {
   const { movie, loading, cast, trailerKey, error } = useMovieDetails()
+  const [isTrailerOpen, setIsTrailerOpen] = useState(false) // Estado para controlar el modal del trailer
 
-  // 1. Estados de carga y error defensivos
   if (loading) {
     return (
       <div className='flex min-h-[50vh] items-center justify-center'>
@@ -27,7 +28,7 @@ export const MovieDetailsPage = () => {
   }
 
   return (
-    <div className='w-full min-h-screen pb-12 animate-fade-in'>
+    <div className='w-full min-h-screen pb-12 animate-fade-in relative'>
       {/* ─── HERO SECTION (BACKDROP) ─── */}
       <section className='relative w-full h-[35vh] md:h-[55vh] overflow-hidden rounded-2xl'>
         <div
@@ -36,7 +37,6 @@ export const MovieDetailsPage = () => {
             backgroundImage: `url('https://image.tmdb.org/t/p/original${movie.backdrop_path}')`,
           }}
         />
-        {/* Degradado para fundir el fondo con el color general de la app */}
         <div className='absolute inset-0 bg-linear-to-t from-bg-dark via-bg-dark/60 to-transparent' />
 
         {/* Contenido flotante abajo del Backdrop en Desktop */}
@@ -60,8 +60,8 @@ export const MovieDetailsPage = () => {
       </section>
 
       {/* ─── CONTENIDO DEBAJO DEL HERO (MÓVIL & INFO GENERAL) ─── */}
-      <div className='mt-6 px-2 md:px-12 space-y-8'>
-        {/* Detalles rápidos para móvil (Título y Tagline aislados) */}
+      <div className='mt-6 px-4 md:px-12 space-y-8'>
+        {/* Detalles rápidos para móvil */}
         <div className='block md:hidden space-y-1'>
           <h1 className='font-headline text-3xl font-extrabold text-white leading-tight'>
             {movie.title}
@@ -73,11 +73,39 @@ export const MovieDetailsPage = () => {
           )}
         </div>
 
-        {/* Bloque de Metadatos Rápidos */}
-        <MovieMetaD movie={movie} />
+        {/* Bloque de Metadatos Rápidos*/}
+        <MovieMetaD
+          movie={movie}
+          trailerKey={trailerKey}
+          onWatchTrailer={() => setIsTrailerOpen(true)}
+        />
+
         {/* Grid de Organización Principal */}
-        <MovieMetaGrid movie={movie} />
+        <MovieMetaGrid movie={movie} cast={cast} />
       </div>
+
+      {/* ─── MODAL PREMIUM FLOTANTE PARA EL TRAILER ─── */}
+      {isTrailerOpen && trailerKey && (
+        <div className='fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md animate-fade-in'>
+          <div className='relative w-full max-w-4xl aspect-video bg-surface rounded-2xl overflow-hidden border border-white/10 shadow-2xl'>
+            {/* Botón de cerrar flotante */}
+            <button
+              onClick={() => setIsTrailerOpen(false)}
+              className='absolute top-4 right-4 z-10 bg-black/60 hover:bg-black/90 text-white rounded-full p-2 transition-all active:scale-90 border border-white/10 flex items-center justify-center'>
+              ✕
+            </button>
+
+            {/* Iframe Embebido del Reproductor de YouTube */}
+            <iframe
+              title={`Trailer de ${movie.title}`}
+              src={`https://www.youtube.com/embed/${trailerKey}?autoplay=1`}
+              className='w-full h-full border-none'
+              allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'
+              allowFullScreen
+            />
+          </div>
+        </div>
+      )}
     </div>
   )
 }

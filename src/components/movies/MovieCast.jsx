@@ -2,7 +2,7 @@ export const MovieCast = ({ cast }) => {
   if (!cast || cast.length === 0) return null
 
   // Cortamos para no saturar el navegador con demasiados nodos
-  const mainCast = cast.slice(0, 12)
+  const mainCast = cast.slice(0, 7)
 
   return (
     <section className='space-y-4 pt-4'>

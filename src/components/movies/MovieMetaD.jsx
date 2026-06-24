@@ -1,7 +1,6 @@
 import { Button } from '../Button'
 
-export const MovieMetaD = ({ movie }) => {
-  // Helper para formatear tiempo (128 -> 2h 8m)
+export const MovieMetaD = ({ movie, trailerKey, onWatchTrailer }) => {
   const formatRuntime = (minutes) => {
     if (!minutes) return '—'
     const hrs = Math.floor(minutes / 60)
@@ -27,8 +26,14 @@ export const MovieMetaD = ({ movie }) => {
           </span>
         </>
       )}
-      <span>•</span>
-      <Button text={'▶ Watch Trailer'} />
+
+      {/* Si existe un trailerKey, renderizamos el botón interactivo */}
+      {trailerKey && (
+        <>
+          <span>•</span>
+          <Button text={'▶ Watch Trailer'} handleClick={onWatchTrailer} />
+        </>
+      )}
     </div>
   )
 }

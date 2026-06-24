@@ -1,5 +1,6 @@
-export const MovieMetaGrid = ({ movie }) => {
-  // Helper para formatear dinero (USD)
+import { MovieCast } from './MovieCast'
+
+export const MovieMetaGrid = ({ movie, cast }) => {
   const formatCurrency = (amount) => {
     if (!amount) return '—'
     return new Intl.NumberFormat('en-US', {
@@ -11,7 +12,7 @@ export const MovieMetaGrid = ({ movie }) => {
 
   return (
     <div className='grid grid-cols-1 lg:grid-cols-[250px_1fr] gap-8 items-start'>
-      {/* Poster en móvil visible (Oculto en desktop porque ya está arriba) */}
+      {/* Poster móvil */}
       <div className='flex justify-center md:hidden'>
         <img
           alt={movie.title}
@@ -20,7 +21,7 @@ export const MovieMetaGrid = ({ movie }) => {
         />
       </div>
 
-      {/* Lateral Izquierdo o Información de Compañías */}
+      {/* Lateral Izquierdo: Géneros y Producción */}
       <div className='space-y-6'>
         <div>
           <h3 className='font-headline text-xs font-bold text-text-muted uppercase tracking-widest mb-3'>
@@ -55,7 +56,7 @@ export const MovieMetaGrid = ({ movie }) => {
         )}
       </div>
 
-      {/* Lateral Derecho: Sinopsis y Caja de Finanzas (Bento) */}
+      {/* Lateral Derecho: Sinopsis, El Reparto y Finanzas (Bento) */}
       <div className='space-y-6'>
         <div className='space-y-2'>
           <h3 className='font-headline text-xs font-bold text-primary uppercase tracking-widest'>
@@ -67,7 +68,10 @@ export const MovieMetaGrid = ({ movie }) => {
           </p>
         </div>
 
-        {/* Panel Financiero Estilo Bento */}
+        {/* ─── REPARTO (CARRUSEL) ─── */}
+        <MovieCast cast={cast} />
+
+        {/* Panel Financiero Bento */}
         <div className='grid grid-cols-2 gap-4 pt-2'>
           <div className='bg-white/2 border border-white/5 backdrop-blur-md p-4 rounded-xl space-y-1'>
             <p className='font-headline text-[10px] font-semibold text-text-muted uppercase tracking-wider'>
