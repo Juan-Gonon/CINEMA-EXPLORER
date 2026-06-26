@@ -113,3 +113,22 @@ export const getMovieVideo = async (movieId) => {
     throw error
   }
 }
+
+export const getMovieCollection = async (collectionId) => {
+  const id = Number(collectionId)
+
+  if (!id || !Number.isInteger(id)) {
+    console.warn(`Id invalido proporcionado ${id}`)
+    return null
+  }
+  try {
+    const res = await tmdbClient.get(`/collection/${id}`)
+
+    return res.data || []
+  } catch (error) {
+    console.error(
+      'Error en movie collection',
+      error.response?.data || error.message
+    )
+  }
+}

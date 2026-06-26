@@ -2,6 +2,7 @@ import { useEffect } from 'react'
 import { useState } from 'react'
 import { useParams } from 'react-router-dom'
 import {
+  getMovieCollection,
   getMovieCredits,
   getMoviesDetails,
   getMovieVideo,
@@ -15,6 +16,7 @@ export const useMovieDetails = () => {
   const [error, setError] = useState(null)
   const [cast, setCast] = useState([])
   const [trailerKey, setTrailerKey] = useState(null)
+  const [collection, setCollection] = useState([])
 
   useEffect(() => {
     ;(async () => {
@@ -23,13 +25,24 @@ export const useMovieDetails = () => {
         setMovie([])
         setCast([])
         setTrailerKey(null)
+        setCollection([])
 
         const [movieData, creditsData, videosData] = await Promise.all([
           getMoviesDetails(movieId),
           getMovieCredits(movieId),
           getMovieVideo(movieId),
         ])
-        // console.log(res)
+        // console.log(movieData)
+
+        if (movieData?.belongs_to_collection !== null) {
+          const resCollection = await getMovieCollection(
+            movieData.belongs_to_collection.id
+          )
+          const parts = resCollection?.parts.find(
+            (part) => part.id !== movieData.id
+          )
+          setCollection(parts)
+        }
 
         // console.log({
         //   movieData,
@@ -55,6 +68,7 @@ export const useMovieDetails = () => {
   }, [movieId])
   return {
     movie,
+    collection,
     cast,
     trailerKey,
     loading,
